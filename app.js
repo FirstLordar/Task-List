@@ -36,8 +36,10 @@ listElement.onclick = function(event) {
             notes[index].comleted = !notes[index].comleted
         }
         else if (type === 'remove') {
-            console.log('remove', index)
+            notes.splice(index, 1)
         }
+        
+        render()
     }
 }
 
@@ -55,6 +57,9 @@ function getNoteTemplate(note, index) {
 }
 function render () {
     listElement.innerHTML = ''
+    if (notes.length === 0) {
+        listElement.innerHTML = '<p style= "text-align: center;">Нет Задач</p>'
+    }
     for(i = 0; i < notes.length; i++) {
         listElement.insertAdjacentHTML('beforeend', getNoteTemplate(notes[i], i))
     }
